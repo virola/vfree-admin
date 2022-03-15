@@ -1,0 +1,782 @@
+/** ele admin pro 布局样式 license by http://eleadmin.com */
+@import './var.less';
+
+/* header */
+.ele-admin-header {
+  display: flex;
+  align-items: center;
+  height: @header-height;
+  line-height: @header-height;
+  box-shadow: @header-light-shadow;
+  background: @component-background;
+  z-index: (@layout-z-index + 2);
+  position: relative;
+
+  // logo
+  .ele-admin-logo {
+    width: @sidebar-width;
+    height: @header-height;
+    line-height: @header-height;
+    box-shadow: @logo-light-shadow;
+    background: @component-background;
+    transition: @sidebar-transition;
+    font-size: @logo-font-size;
+    color: @logo-light-color;
+    white-space: nowrap;
+    position: relative;
+    font-weight: 600;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: @logo-size;
+      height: @logo-size;
+
+      & + span {
+        margin-left: @padding-sm;
+      }
+    }
+  }
+
+  // 面包屑
+  .ele-admin-breadcrumb {
+    flex-shrink: 0;
+  }
+
+  // nav
+  .ele-admin-header-nav {
+    flex: 1;
+    border: none;
+    background: none;
+    line-height: (@header-height - 4px);
+    overflow: hidden;
+
+    .ant-menu-item,
+    .ant-menu-submenu {
+      top: auto;
+      /*margin: 0 @padding-sm;*/
+      border-top: 2px solid transparent;
+    }
+
+    .ant-menu-item,
+    .ant-menu-submenu-title {
+      /*padding: 0 (@padding-xs / 2);*/
+      transition: border-color 0.3s @ease-in-out, background 0.3s @ease-in-out;
+    }
+  }
+
+  // 操作按钮
+  .ele-admin-header-tool {
+    display: flex;
+    flex-shrink: 0;
+    padding: 0 @padding-sm;
+
+    .ele-admin-header-tool-item {
+      font-size: @font-size-base;
+      padding: 0 @padding-sm;
+      cursor: pointer;
+
+      &:hover {
+        background: rgba(0, 0, 0, .025);
+      }
+
+      .anticon-menu-fold,
+      .anticon-menu-unfold,
+      .anticon-more,
+      .anticon-bell,
+      .anticon-fullscreen,
+      .anticon-fullscreen-exit {
+        transform: scale(1.15);
+      }
+    }
+  }
+
+  // 用户信息
+  .ele-admin-header-avatar {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .ant-avatar {
+      width: @header-avatar-size;
+      height: @header-avatar-size;
+
+      & + span {
+        padding-left: @padding-xs;
+      }
+    }
+  }
+}
+
+/* main */
+.ele-admin-main {
+  display: flex;
+}
+
+/* 侧边栏 */
+.ele-admin-sidebar {
+  flex-shrink: 0;
+  overflow-x: hidden;
+  width: @sidebar-width;
+  min-height: calc(100vh - @header-height);
+  background: @component-background;
+  box-shadow: @sidebar-light-shadow;
+  transition: @sidebar-transition;
+  z-index: (@layout-z-index + 3);
+  position: relative;
+
+  .ant-menu {
+    border: none;
+    background: none;
+
+    .ant-menu-item,
+    .ant-menu-submenu-title {
+      width: 100%;
+    }
+  }
+
+  .ant-menu-submenu .ant-menu-sub {
+    transition: none;
+  }
+}
+
+/* 主体部分 */
+.ele-admin-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - @header-height);
+  overflow: auto;
+
+  .ele-admin-content {
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+
+    .ele-admin-content-view {
+      flex: auto;
+    }
+  }
+}
+
+.ele-admin-iframe {
+  width: 100%;
+  height: calc(100vh - @header-height);
+  display: block;
+}
+
+.ele-admin-show-tabs .ele-admin-iframe {
+  height: calc(100vh - @header-height - @tabs-height);
+}
+
+/* 多页签 */
+.ele-admin-tabs.ant-tabs {
+  background: @component-background;
+  box-shadow: @header-light-shadow;
+  z-index: @layout-z-index;
+  position: relative;
+
+  .ant-tabs-bar {
+    margin: 0;
+    border-bottom: none;
+
+    .ant-tabs-nav-container {
+      padding: 0 @tabs-height;
+      height: auto;
+
+      .ant-tabs-tab {
+        padding: 0;
+        background: none;
+        height: @tabs-height;
+        line-height: @tabs-height;
+        transition: background .3s @ease-in-out, color .3s @ease-in-out;
+        border-radius: 0;
+        border: none;
+        margin: 0;
+
+        & > div {
+          padding: 0 28px 0 @padding-md;
+
+          &.ant-tabs-tab-unclosable {
+            padding-right: @padding-md;
+          }
+        }
+
+        .ant-tabs-close-x {
+          width: auto;
+          height: auto;
+          margin: -6px 0 0 0;
+          position: absolute;
+          right: 10px;
+          top: 50%;
+        }
+
+        &:before {
+          display: none;
+        }
+      }
+
+      .ant-tabs-tab-active {
+        background: rgba(@primary-color, .08);
+      }
+
+      .ant-tabs-tab-prev,
+      .ant-tabs-tab-next {
+        transition: color .3s @ease-in-out, opacity .3s @ease-in-out;
+        width: @tabs-height;
+        pointer-events: auto;
+        line-height: 1;
+        opacity: 1;
+
+        .anticon {
+          font-size: 14px;
+        }
+      }
+
+      .ant-tabs-ink-bar {
+        display: none !important;
+      }
+    }
+  }
+
+  .ant-tabs-content,
+  .ant-tabs-content + div,
+  .ant-tabs-bar + div,
+  &:before,
+  &:after {
+    display: none;
+  }
+
+  .ant-tabs-nav-container,
+  .ant-tabs-nav-wrap {
+    margin-bottom: 0;
+  }
+
+  .ele-admin-tabs-drop {
+    width: @tabs-height;
+    height: @tabs-height;
+    line-height: @tabs-height;
+    text-align: center;
+    cursor: pointer;
+
+    .anticon {
+      font-size: 14px;
+    }
+  }
+}
+
+/* 开启多页签顶栏阴影处理 */
+.ele-admin-show-tabs:not(.ele-admin-tab-card):not(.ele-admin-head-dark) {
+  .ele-admin-header {
+    box-shadow: @sidebar-width 1px 0 @border-color-split;
+    transition: padding-left @sidebar-transition-anim;
+  }
+
+  &.ele-admin-collapse .ele-admin-header {
+    box-shadow: @sidebar-collapse-width 1px 0 @border-color-split;
+  }
+
+  &.ele-admin-logo-auto .ele-admin-header {
+    box-shadow: 0 1px 0 @border-color-split;
+  }
+}
+
+/* 折叠侧边栏 */
+.ele-admin-collapse {
+  .ele-admin-logo > span {
+    display: none;
+  }
+
+  .ele-admin-logo,
+  .ele-admin-sidebar,
+  .ele-admin-sidebar .ant-menu-inline-collapsed {
+    width: @sidebar-collapse-width;
+  }
+
+  .ele-admin-sidebar .ant-menu > .ant-menu-item,
+  .ele-admin-sidebar .ant-menu > .ant-menu-submenu > .ant-menu-submenu-title {
+    padding: 0 ((@sidebar-collapse-width - @menu-icon-size-lg) / 2) !important;
+  }
+}
+
+/* 主题风格 */
+// 固定顶栏
+.ele-admin-fixed-header:not(.ele-admin-fixed-body) {
+  padding-top: @header-height;
+
+  .ele-admin-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &.ele-admin-show-tabs .ele-admin-body {
+    padding-top: @tabs-height;
+  }
+
+  .ele-admin-tabs {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: @header-height;
+    transition: left @sidebar-transition-anim;
+  }
+
+  .ele-admin-sidebar + .ele-admin-body .ele-admin-tabs {
+    left: @sidebar-width;
+  }
+
+  &.ele-admin-collapse .ele-admin-sidebar + .ele-admin-body .ele-admin-tabs {
+    left: @sidebar-collapse-width;
+  }
+
+  &:not(.ele-admin-fixed-sidebar) .ele-admin-sidebar {
+    z-index: (@layout-z-index + 1);
+  }
+}
+
+// 固定侧栏
+.ele-admin-fixed-sidebar:not(.ele-admin-fixed-body) {
+  .ele-admin-sidebar {
+    position: fixed;
+    top: @header-height;
+    bottom: 0;
+    left: 0;
+  }
+
+  &:not(.ele-admin-logo-auto):not(.ele-admin-fixed-header) .ele-admin-logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  .ele-admin-sidebar + .ele-admin-body,
+  &:not(.ele-admin-fixed-header) .ele-admin-header {
+    padding-left: @sidebar-width;
+    transition: padding-left @sidebar-transition-anim, box-shadow @sidebar-transition-anim;
+  }
+
+  &.ele-admin-collapse {
+    .ele-admin-sidebar + .ele-admin-body,
+    &:not(.ele-admin-fixed-header) .ele-admin-header {
+      padding-left: @sidebar-collapse-width;
+    }
+  }
+
+  &:not(.ele-admin-fixed-header).ele-admin-logo-auto .ele-admin-sidebar {
+    top: 0;
+    z-index: (@layout-z-index + 3);
+  }
+}
+
+// 固定主体
+.ele-admin-fixed-body {
+  .ele-admin-content {
+    height: calc(100vh - @header-height);
+    overflow: auto;
+  }
+
+  .ele-admin-sidebar {
+    height: calc(100vh - @header-height);
+  }
+
+  &.ele-admin-show-tabs {
+    .ele-admin-content {
+      height: calc(100vh - (@header-height + @tabs-height));
+    }
+
+    &.ele-admin-tab-card .ele-admin-content {
+      height: calc(100vh - (@header-height + @tabs-height + @tabs-card-padding));
+    }
+  }
+}
+
+// 暗色侧边栏
+.ele-admin-side-dark {
+  .ele-admin-logo {
+    color: @logo-dark-color;
+    box-shadow: @logo-dark-shadow;
+    background: @layout-sider-background;
+  }
+
+  .ele-admin-sidebar {
+    box-shadow: @sidebar-dark-shadow;
+    background: @layout-sider-background;
+  }
+}
+
+// logo宽度自适应
+@media screen and (min-width: 768px) {
+  .ele-admin-logo-auto {
+    .ele-admin-logo {
+      width: auto !important;
+      color: @logo-light-color;
+      padding: 0 @padding-sm 0 @padding-lg;
+      background: none;
+      box-shadow: none;
+
+      & > span {
+        display: inline !important;
+      }
+
+      & + .ele-admin-header-nav {
+        margin-left: @padding-sm;
+      }
+    }
+
+    .ele-admin-sidebar {
+      z-index: (@layout-z-index + 1);
+    }
+
+    &.ele-admin-head-dark .ele-admin-logo {
+      color: @logo-dark-color;
+    }
+  }
+}
+
+// 暗色顶栏
+.ele-admin-head-dark .ele-admin-header {
+  color: @text-color-dark;
+  box-shadow: @header-dark-shadow;
+  background: @layout-sider-background;
+
+  .ele-admin-header-tool-item:hover {
+    color: @menu-dark-selected-item-text-color;
+    background: none;
+  }
+
+  .ant-breadcrumb,
+  .ant-breadcrumb-separator,
+  .ant-breadcrumb a {
+    color: @text-color-secondary-dark;
+  }
+
+  .ant-breadcrumb a:hover {
+    color: @menu-dark-selected-item-text-color;
+  }
+
+  .ant-breadcrumb > span:last-child {
+    color: @text-color-dark;
+  }
+
+  .ant-menu-dark {
+    .ant-menu-item,
+    .ant-menu-submenu {
+      /*margin: 0 (@padding-xs / 2);*/
+      border-bottom: 2px solid transparent;
+    }
+
+    /*.ant-menu-item, .ant-menu-submenu-title {
+      padding: 0 @padding-sm;
+    }*/
+  }
+
+  // 主色顶栏menu
+  .ant-menu-light {
+    color: @text-color-dark;
+
+    & > .ant-menu-item > a {
+      color: @text-color-dark;
+    }
+
+    & > .ant-menu-item:hover,
+    & > .ant-menu-submenu:hover,
+    & > .ant-menu-item-active,
+    & > .ant-menu-submenu-active,
+    & > .ant-menu-item-open,
+    & > .ant-menu-submenu-open,
+    & > .ant-menu-item-selected,
+    & > .ant-menu-submenu-selected {
+      color: @menu-dark-selected-item-text-color;
+      border-bottom-color: @menu-dark-selected-item-text-color;
+
+      & > a {
+        color: @menu-dark-selected-item-text-color;
+      }
+    }
+
+    .ant-menu-submenu-title:hover {
+      color: @menu-dark-selected-item-text-color;
+    }
+  }
+}
+
+// 选项卡圆点风格
+.ele-admin-tab-dot .ele-admin-tabs.ant-tabs {
+  .ant-tabs-bar .ant-tabs-nav-container {
+    .ant-tabs-tab {
+      border-right: 1px solid @border-color-split;
+
+      & > div {
+        padding-left: 28px;
+      }
+
+      &:before {
+        width: 8px;
+        height: 8px;
+        margin-top: -4px;
+        background: @border-color-base;
+        transition: background .3s;
+        border-radius: 50%;
+        display: block;
+        border: none;
+        left: 12px;
+        top: 50%;
+      }
+    }
+
+    .ant-tabs-tab-active:before {
+      background: @primary-color;
+    }
+
+    .ant-tabs-tab-next {
+      border-left: 1px solid @border-color-split;
+      right: 0;
+    }
+
+    .ant-tabs-tab-prev {
+      border-right: 1px solid @border-color-split;
+    }
+  }
+
+  .ele-admin-tabs-drop {
+    border-left: 1px solid @border-color-split;
+  }
+}
+
+// 选项卡卡片风格
+.ele-admin-tab-card .ele-admin-tabs.ant-tabs {
+  background: @layout-body-background;
+  padding-top: @tabs-card-padding;
+  box-shadow: 0 @tabs-card-padding 0 @layout-body-background;
+
+  .ant-tabs-bar .ant-tabs-nav-container {
+    .ant-tabs-tab {
+      border-radius: 4px;
+      height: (@tabs-height - @tabs-card-padding);
+      line-height: (@tabs-height - @tabs-card-padding);
+      background: @component-background;
+
+      & + .ant-tabs-tab {
+        margin-left: @tabs-card-padding;
+      }
+    }
+
+    .ant-tabs-tab-prev,
+    .ant-tabs-tab-next {
+      height: (@tabs-height - @tabs-card-padding);
+      line-height: (@tabs-height - @tabs-card-padding);
+    }
+  }
+
+  .ele-admin-tabs-drop {
+    border-radius: 4px;
+    background: @component-background;
+    margin-right: @tabs-card-padding;
+    width: (@tabs-height - @tabs-card-padding);
+    height: (@tabs-height - @tabs-card-padding);
+    line-height: (@tabs-height - @tabs-card-padding);
+  }
+
+  & + .ele-admin-content {
+    margin-top: @tabs-card-padding;
+
+    & > .ele-admin-content-view > .ele-body:first-child {
+      padding-top: 0;
+    }
+  }
+}
+
+// 侧边栏彩色图标
+.ele-admin-side-colorful {
+  .ele-admin-sidebar > .ant-menu > li {
+    & > a > .anticon,
+    & > .ant-menu-submenu-title > .anticon {
+      color: #fff;
+      background: #61b2fc;
+      width: @sidebar-colorful-icon-width;
+      height: @sidebar-colorful-icon-width;
+      line-height: (@sidebar-colorful-icon-width + 4px);
+      font-size: @sidebar-colorful-icon-size;
+      vertical-align: -0.05em;
+      border-radius: 50%;
+      text-align: center;
+    }
+
+    &:nth-child(even) {
+      & > a > .anticon,
+      & > .ant-menu-submenu-title > .anticon {
+        background: #7dd733;
+      }
+    }
+
+    &:nth-child(3) {
+      & > a > .anticon,
+      & > .ant-menu-submenu-title > .anticon {
+        background: #32a2d4;
+      }
+    }
+
+    &:nth-child(4) {
+      & > a > .anticon,
+      & > .ant-menu-submenu-title > .anticon {
+        background: #7383cf;
+      }
+    }
+
+    &:nth-child(5) {
+      & > a > .anticon,
+      & > .ant-menu-submenu-title > .anticon {
+        background: #F5686F;
+      }
+    }
+
+    &:nth-child(6) {
+      & > a > .anticon,
+      & > .ant-menu-submenu-title > .anticon {
+        background: #2bccce;
+      }
+    }
+
+    &:nth-child(7) {
+      & > a > .anticon,
+      & > .ant-menu-submenu-title > .anticon {
+        background: #7dd733;
+      }
+    }
+
+    &:nth-child(8) {
+      & > a > .anticon,
+      & > .ant-menu-submenu-title > .anticon {
+        background: #FAAD14;
+      }
+    }
+  }
+
+  .ele-admin-sidebar .ant-menu-submenu > .ant-menu > li {
+    & > a > .anticon,
+    & > .ant-menu-submenu-title > .anticon {
+      display: none;
+    }
+
+    & > a:before,
+    & > .ant-menu-submenu-title:before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      margin: 0 10px;
+      position: static;
+      border-radius: 50%;
+      display: inline-block;
+      vertical-align: 0.05em;
+      background: @normal-color;
+      transition: background .3s @ease-in-out;
+    }
+
+    &:hover > a:before,
+    &.ant-menu-item-selected > a:before,
+    &:hover > .ant-menu-submenu-title:before {
+      background: @primary-color;
+    }
+  }
+
+  &.ele-admin-side-dark .ele-admin-sidebar .ant-menu-submenu > .ant-menu > li {
+    & > a:before,
+    & > .ant-menu-submenu-title:before {
+      background: @menu-dark-color;
+    }
+
+    &:hover > a:before,
+    &.ant-menu-item-selected > a:before,
+    &:hover > .ant-menu-submenu-title:before {
+      background: @menu-dark-highlight-color;
+    }
+  }
+
+  &.ele-admin-collapse {
+    .ele-admin-sidebar .ant-menu > .ant-menu-item,
+    .ele-admin-sidebar .ant-menu > .ant-menu-submenu > .ant-menu-submenu-title {
+      padding: 0 ((@sidebar-collapse-width - @sidebar-colorful-icon-width) / 2) !important;
+    }
+  }
+}
+
+// 主体内容定宽
+.ele-admin-body-limit {
+  .ele-body,
+  .ele-admin-iframe {
+    max-width: @body-limit-width;
+    margin: 0 auto;
+  }
+}
+
+// 色弱模式
+.ele-admin-weak {
+  filter: invert(.8);
+  background: @heading-color;
+  overflow-x: hidden;
+}
+
+/* 小屏幕遮罩层 */
+.ele-admin-shade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: (@layout-z-index + 2);
+  transition: background-color @sidebar-transition-anim, left @sidebar-transition-anim;
+  visibility: hidden;
+}
+
+/* 小屏幕样式 */
+@media screen and (max-width: 768px) {
+  .ele-admin-logo,
+  .ele-admin-sidebar {
+    position: fixed !important;
+    left: 0 !important;
+    width: @sidebar-width !important;
+    z-index: (@layout-z-index + 3) !important;
+  }
+
+  .ele-admin-sidebar {
+    top: @header-height !important;;
+  }
+
+  .ele-admin-logo > span {
+    display: inline !important;
+  }
+
+  .ele-admin-body,
+  .ele-admin-header {
+    padding-left: 0 !important;
+  }
+
+  .ele-admin-tabs {
+    left: 0 !important;
+  }
+
+  .ele-admin-breadcrumb {
+    display: none;
+  }
+
+  .ele-admin-layout:not(.ele-admin-collapse) .ele-admin-shade {
+    left: @sidebar-width;
+    background: @modal-mask-bg;
+    visibility: visible;
+  }
+
+  .ele-admin-collapse .ele-admin-sidebar,
+  .ele-admin-collapse .ele-admin-logo {
+    left: -@sidebar-width !important;
+    box-shadow: none !important;
+  }
+
+  .ele-admin-show-tabs:not(.ele-admin-tab-card):not(.ele-admin-head-dark) .ele-admin-header {
+    box-shadow: 0 1px 0 @border-color-split !important;
+  }
+}
